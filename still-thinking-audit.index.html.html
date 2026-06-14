@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Still Thinking — The Editorial Intelligence Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0D0D0D; --red:#C00000; --off:#F6F4EF; --cream:#EDEAE1; --card:#FFFFFF;
+  --text:#1A1A1A; --muted:#4A4A4A; --warm:#8A8680; --faint:#A9A49B;
+  --line:rgba(0,0,0,0.09); --line2:rgba(0,0,0,0.16);
+  --f-d:'Playfair Display',serif; --f-b:'DM Sans',sans-serif; --f-m:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-b);background:var(--off);color:var(--text);line-height:1.7;font-weight:400;-webkit-font-smoothing:antialiased}
+.wrap{max-width:680px;margin:0 auto;padding:0 24px}
+
+/* ── EYEBROW ─────────────────────────── */
+.eyebrow{font-family:var(--f-m);font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--red);margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--red)}
+
+/* ── HERO ─────────────────────────────
+   CONTRAST PLAY:
+   - tiny mono kicker against giant Playfair
+   - 900 weight against 300 weight body
+   - italic crimson breaking the black mass
+   - hard line break placement to give "thinking" its own line  */
+header{padding:96px 0 56px}
+.h-rule{width:64px;height:3px;background:var(--red);margin-bottom:32px;opacity:0;animation:rise .5s forwards}
+.h-kick{font-family:var(--f-m);font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--warm);margin-bottom:36px;opacity:0;animation:rise .6s .06s forwards}
+.h-kick strong{color:var(--ink);font-weight:500}
+
+h1{
+  font-family:var(--f-d);
+  font-size:clamp(40px,8vw,72px);
+  font-weight:900;
+  line-height:.98;
+  letter-spacing:-.03em;
+  color:var(--ink);
+  margin-bottom:36px;
+}
+h1 .l{display:block;opacity:0;animation:rise .7s forwards}
+h1 .l:nth-child(1){animation-delay:.1s}
+h1 .l:nth-child(2){animation-delay:.18s}
+h1 .l:nth-child(3){animation-delay:.26s}
+/* italic crimson — the contrast device */
+h1 em{font-style:italic;color:var(--red);font-weight:900}
+
+.thesis{
+  font-size:18px;
+  color:var(--muted);
+  line-height:1.8;
+  max-width:560px;
+  font-weight:300;
+  opacity:0;animation:rise .7s .34s forwards;
+}
+.thesis b{color:var(--ink);font-weight:500}
+.thesis em{font-style:italic;color:var(--ink);font-weight:400}
+
+/* ── SECTION SHELL ──────────────────── */
+section{padding:56px 0;border-top:1px solid var(--line)}
+.sec-n{font-family:var(--f-d);font-style:italic;font-size:15px;color:var(--warm);margin-bottom:6px;font-weight:400}
+h2{
+  font-family:var(--f-d);
+  font-size:34px;
+  font-weight:900;
+  letter-spacing:-.022em;
+  color:var(--ink);
+  margin-bottom:14px;
+  line-height:1.08;
+}
+h2 em{font-style:italic;color:var(--red);font-weight:900}
+.sec-l{font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:32px;max-width:560px;font-weight:300}
+.sec-l em{font-style:italic;color:var(--ink);font-weight:400}
+.sec-l b{color:var(--ink);font-weight:500}
+
+/* ── OFFER CARD ─────────────────────
+   CONTRAST PLAY:
+   - giant Playfair 900 price in crimson against tiny mono label
+   - strike-through standard rate sitting small next to it
+   - black-on-white card to pop against the cream page  */
+.offer{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-top:4px solid var(--red);
+  border-radius:2px;
+  padding:40px;
+  position:relative;
+}
+.offer-flag{
+  position:absolute;top:0;right:32px;
+  font-family:var(--f-m);font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  padding:8px 14px;background:var(--red);color:#fff;
+}
+.offer-name{
+  font-family:var(--f-d);font-size:28px;font-weight:900;color:var(--ink);
+  letter-spacing:-.015em;margin-bottom:4px;
+}
+.offer-for{
+  font-family:var(--f-m);font-size:10px;color:var(--warm);
+  letter-spacing:.16em;text-transform:uppercase;margin-bottom:28px;
+}
+
+/* PRICE BLOCK — heavy contrast moment */
+.price-block{
+  display:flex;align-items:baseline;gap:18px;margin-bottom:8px;flex-wrap:wrap;
+}
+.price-now{
+  font-family:var(--f-d);
+  font-size:56px;
+  font-weight:900;
+  color:var(--red);
+  line-height:1;
+  letter-spacing:-.025em;
+}
+.price-then{
+  font-family:var(--f-d);
+  font-size:22px;
+  color:var(--warm);
+  font-weight:400;
+  text-decoration:line-through;
+  text-decoration-color:rgba(138,134,128,0.5);
+}
+.price-note{
+  font-family:var(--f-m);font-size:10px;color:var(--red);
+  letter-spacing:.18em;text-transform:uppercase;
+  margin-bottom:24px;font-weight:500;
+}
+
+.offer-line{font-size:15.5px;color:var(--muted);line-height:1.75;margin-bottom:22px;font-weight:300}
+.offer-line b{color:var(--ink);font-weight:500}
+
+.offer-list{list-style:none;margin:22px 0;padding:0}
+.offer-list li{
+  position:relative;padding:9px 0 9px 22px;
+  font-size:14px;color:var(--muted);line-height:1.65;font-weight:300;
+  border-bottom:1px solid var(--line);
+}
+.offer-list li:last-child{border-bottom:none}
+.offer-list li::before{
+  content:'';position:absolute;left:0;top:16px;
+  width:7px;height:7px;background:var(--red);
+}
+.offer-list li b{color:var(--ink);font-weight:500}
+
+.offer-meta{
+  display:flex;gap:28px;margin-top:22px;padding-top:22px;
+  border-top:1px solid var(--line);
+  font-family:var(--f-m);font-size:11px;color:var(--warm);
+  flex-wrap:wrap;letter-spacing:.04em;
+}
+.offer-meta b{color:var(--ink);font-weight:500}
+
+.trade{
+  font-family:var(--f-d);
+  font-size:14.5px;
+  color:var(--muted);
+  font-weight:400;
+  line-height:1.75;
+  margin-top:22px;
+  font-style:italic;
+  text-align:center;
+  max-width:540px;
+  margin-left:auto;margin-right:auto;
+}
+.trade b{color:var(--ink);font-style:normal;font-weight:500}
+.trade em{color:var(--red);font-style:italic}
+
+/* ── HOW IT WORKS ────────────────── */
+.steps{background:var(--card);border:1px solid var(--line);border-radius:2px;overflow:hidden}
+.step{
+  display:flex;gap:22px;padding:22px 28px;
+  border-top:1px solid var(--line);align-items:flex-start;
+}
+.step:first-child{border-top:none}
+.step-n{
+  font-family:var(--f-d);font-style:italic;
+  font-size:24px;color:var(--red);
+  flex-shrink:0;width:36px;line-height:1.1;
+  font-weight:700;padding-top:2px;
+}
+.step-c b{
+  font-family:var(--f-d);font-size:18px;
+  color:var(--ink);font-weight:700;
+  display:block;margin-bottom:4px;letter-spacing:-.01em;
+}
+.step-c span{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300}
+
+/* ── SOLO / SMALLER TEAM ─────────── */
+.solo{
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:2px;padding:30px 32px;
+}
+.solo-h{
+  font-family:var(--f-d);font-size:22px;font-weight:900;
+  color:var(--ink);margin-bottom:8px;letter-spacing:-.015em;
+}
+.solo-l{font-size:14px;color:var(--muted);line-height:1.75;font-weight:300;margin-bottom:18px}
+.solo-l b{color:var(--ink);font-weight:500}
+.solo-link{
+  font-family:var(--f-m);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--red);text-decoration:none;font-weight:500;
+  display:inline-flex;align-items:center;gap:8px;
+  padding-bottom:3px;border-bottom:1px solid var(--red);
+}
+.solo-link:hover{color:var(--ink);border-bottom-color:var(--ink)}
+
+/* ── FREE DOC (the dark contrast block) ─
+   CONTRAST PLAY:
+   - off-white page → ink black block
+   - white serif headline → red italic flash
+   - mono micro-label → giant display headline  */
+.freedoc{
+  background:var(--ink);
+  border-radius:2px;
+  padding:44px 40px;
+  position:relative;
+  overflow:hidden;
+}
+.freedoc::after{
+  content:'';position:absolute;right:-30px;bottom:-30px;
+  width:180px;height:180px;background:var(--red);opacity:.07;border-radius:50%;
+}
+.freedoc-eye{
+  font-family:var(--f-m);font-size:10px;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);margin-bottom:18px;position:relative;
+}
+.freedoc h3{
+  font-family:var(--f-d);
+  font-size:32px;font-weight:900;
+  color:#fff;line-height:1.05;letter-spacing:-.022em;
+  margin-bottom:16px;position:relative;
+}
+.freedoc h3 em{font-style:italic;color:var(--red);font-weight:900}
+.freedoc p{
+  font-size:15px;color:rgba(255,255,255,0.72);
+  line-height:1.8;margin-bottom:26px;font-weight:300;position:relative;
+}
+.freedoc p b{color:#fff;font-weight:500}
+.freedoc-form{display:flex;gap:10px;flex-wrap:wrap;position:relative}
+.freedoc-form input{
+  flex:1;min-width:200px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.15);
+  color:#fff;font-family:var(--f-b);font-size:14px;
+  padding:14px 16px;border-radius:2px;font-weight:400;
+}
+.freedoc-form input::placeholder{color:rgba(255,255,255,0.4)}
+.freedoc-form input:focus{outline:none;border-color:var(--red);background:rgba(255,255,255,0.1)}
+.freedoc-form button{
+  background:var(--red);color:#fff;
+  font-family:var(--f-m);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  padding:14px 24px;border:none;border-radius:2px;cursor:pointer;transition:background .2s,color .2s;
+}
+.freedoc-form button:hover{background:#fff;color:var(--ink)}
+.freedoc-note{
+  font-family:var(--f-m);font-size:10px;
+  color:rgba(255,255,255,0.4);
+  margin-top:16px;letter-spacing:.06em;position:relative;
+}
+
+/* ── PROOF ─────────────────────────── */
+.proof{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-left:3px solid var(--red);
+  border-radius:2px;padding:32px 36px;
+}
+.proof-q{
+  font-family:var(--f-d);font-size:20px;
+  line-height:1.55;color:var(--ink);font-weight:700;
+  letter-spacing:-.005em;
+}
+.proof-q em{font-style:italic;color:var(--red);font-weight:700}
+.proof-q b{color:var(--ink);font-weight:700}
+
+/* ── CTA ───────────────────────────── */
+.cta{text-align:center;padding:80px 0 52px;border-top:1px solid var(--line)}
+.cta-h{
+  font-family:var(--f-d);font-size:38px;font-weight:900;
+  color:var(--ink);margin-bottom:16px;letter-spacing:-.022em;line-height:1.1;
+}
+.cta-h em{font-style:italic;color:var(--red);font-weight:900}
+.cta-l{
+  font-size:15px;color:var(--muted);
+  margin:0 auto 36px;max-width:460px;line-height:1.8;font-weight:300;
+}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--f-m);font-size:11px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  padding:16px 30px;border-radius:2px;
+  text-decoration:none;transition:transform .15s,background .2s,color .2s;
+}
+.btn-primary{background:var(--red);color:#fff;border:1px solid var(--red)}
+.btn-primary:hover{transform:translateY(-2px);background:var(--ink);border-color:var(--ink)}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line2)}
+.btn-ghost:hover{transform:translateY(-2px);background:var(--cream)}
+
+/* ── FOOTER ────────────────────────── */
+footer{text-align:center;padding:40px 0 80px;border-top:1px solid var(--line)}
+.foot-name{
+  font-family:var(--f-d);font-style:italic;
+  font-size:18px;color:var(--ink);margin-bottom:8px;font-weight:700;
+}
+.foot-l{
+  font-family:var(--f-m);font-size:10.5px;
+  color:var(--warm);line-height:1.9;letter-spacing:.06em;
+}
+
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:560px){
+  header{padding:60px 0 44px}
+  h1{font-size:clamp(36px,9vw,52px)}
+  .price-now{font-size:44px}
+  .freedoc{padding:32px 26px}
+  .freedoc h3{font-size:26px}
+  .offer{padding:30px 26px}
+  .cta-h{font-size:30px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="h-rule"></div>
+  <div class="h-kick"><strong>Still Thinking</strong> &nbsp;·&nbsp; The Editorial Intelligence Audit</div>
+  <h1>
+    <span class="l">Your team doesn't have</span>
+    <span class="l">a writing problem.</span>
+    <span class="l">It has a <em>thinking</em> problem.</span>
+  </h1>
+  <p class="thesis">In content teams that lean on AI, the thinking quietly drops out first. The drafts read fine and say nothing, and most Heads of Content can feel it without being able to <b>name</b> what's wrong. That's what I do. I name it, score it, and show you how to fix it.</p>
+</header>
+
+<!-- THE OFFER -->
+<section>
+  <div class="sec-n">i.</div>
+  <h2>The Editorial Intelligence Audit</h2>
+  <p class="sec-l">A real diagnostic on your team's content, scored against a four-part rubric, with named failures and the three structural fixes that matter most. <em>Built for teams of 6 or more writers.</em></p>
+
+  <div class="offer">
+    <div class="offer-flag">3 founding spots</div>
+    <div class="offer-name">Team Audit</div>
+    <div class="offer-for">For content teams of 6+ writers</div>
+
+    <div class="price-block">
+      <div class="price-now">$250</div>
+      <div class="price-then">$300</div>
+    </div>
+    <div class="price-note">Per writer · founding rate, first 3 clients only</div>
+
+    <p class="offer-line">A 6-writer team is <b>$1,500</b> at the founding rate. A 10-writer team is <b>$2,500</b>. Teams over 10 writers, let's talk.</p>
+
+    <ul class="offer-list">
+      <li><b>3 pieces per writer</b>, scored against the rubric</li>
+      <li>Per-writer notes naming the specific failure pattern</li>
+      <li>A team-level report showing the patterns across writers</li>
+      <li>The rubric, kept by your team after the audit</li>
+      <li>A 30-minute walkthrough call</li>
+    </ul>
+
+    <div class="offer-meta">
+      <span><b>Turnaround:</b> 10&ndash;14 days</span>
+      <span><b>Payable via</b> Wise or Payoneer</span>
+    </div>
+  </div>
+
+  <p class="trade">The founding rate is a <em>trade</em>. It's discounted in exchange for a <b>case study</b> and a <b>short recorded testimonial</b> after 30 days of use. After the third client, it holds at $300 per writer.</p>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="sec-n">ii.</div>
+  <h2>How it <em>works</em></h2>
+  <p class="sec-l">No mystery, no hourly creep. You see the price, you see what's inside, and the work is delivered when it says it will be.</p>
+  <div class="steps">
+    <div class="step"><div class="step-n">01</div><div class="step-c"><b>You send the pieces</b><span>Three recent pieces per writer, plus your team's brief or style guide if you have one. That's all I need to start.</span></div></div>
+    <div class="step"><div class="step-n">02</div><div class="step-c"><b>I run the audit</b><span>Each piece scored against the rubric. Each writer's pattern named. The recurring weaknesses across the team mapped out.</span></div></div>
+    <div class="step"><div class="step-n">03</div><div class="step-c"><b>You get the report</b><span>A team-level diagnostic and per-writer notes, with the three structural fixes that will move the work fastest. Written so a writer can act on it the same day.</span></div></div>
+    <div class="step"><div class="step-n">04</div><div class="step-c"><b>We walk through it</b><span>A 30-minute call to answer questions and decide what your team takes on first.</span></div></div>
+  </div>
+</section>
+
+<!-- SMALLER TEAM / SOLO -->
+<section>
+  <div class="sec-n">iii.</div>
+  <h2>Fewer than <em>six writers?</em></h2>
+  <p class="sec-l">The Team Audit is built for size. For smaller teams or individual writers, the same diagnostic system is available as a self-serve toolkit you can run on your own work.</p>
+  <div class="solo">
+    <div class="solo-h">The Editorial Scorecard Toolkit</div>
+    <p class="solo-l">The prompt I use to audit my own team, plus the tracking spreadsheet with the failure taxonomy and the four-part rubric built in. <b>Run it on your own pieces or your writers'.</b> Same logic, no service needed.</p>
+    <a href="#" class="solo-link">Get the toolkit on Gumroad &rarr;</a>
+  </div>
+</section>
+
+<!-- FREE DOCUMENT -->
+<section>
+  <div class="sec-n">iv.</div>
+  <h2>Or start with the <em>working document.</em></h2>
+  <p class="sec-l">If you're not ready to commit to anything, read how I do this first. The eight-page document is the actual review system I run on a 9-writer team. Anonymized, with one real before-and-after.</p>
+  <div class="freedoc">
+    <div class="freedoc-eye">Free &nbsp;·&nbsp; No spam</div>
+    <h3>How we audit editorial <em>thinking.</em></h3>
+    <p>The taxonomy, the rubric, the worked example. Nobody else publishes their actual review system. <b>This is mine.</b></p>
+    <form class="freedoc-form" action="https://formspree.io/f/REPLACE-WITH-YOUR-FORM-ID" method="POST">
+      <input type="email" name="email" placeholder="your@email.com" required>
+      <button type="submit">Send me the document</button>
+    </form>
+    <div class="freedoc-note">One email, used only to send the file.</div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section>
+  <div class="sec-n">v.</div>
+  <h2>Why trust this</h2>
+  <div class="proof">
+    <p class="proof-q">This isn't theory. It's the working system I run on a <b>9-writer editorial team</b> at one of Pakistan's largest marketplaces. The system I use on my own team is the one I'll run on <em>yours.</em></p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-h">Start with <em>one</em> conversation.</div>
+  <p class="cta-l">Tell me how big your team is and send a few recent pieces. I'll give you one specific observation for free, then tell you whether the audit fits. One message is plenty.</p>
+  <div class="cta-btns">
+    <a class="btn btn-primary" href="https://www.linkedin.com/in/farwa-shah-803246144/" target="_blank" rel="noopener">Message me on LinkedIn</a>
+    <a class="btn btn-ghost" href="mailto:stillthinking.team@gmail.com">stillthinking.team@gmail.com</a>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-name">Still Thinking</div>
+  <div class="foot-l">Run by a Content Manager leading a 9-writer editorial team.<br>Writing about the thinking failures most content teams haven't named yet.</div>
+</footer>
+
+</div>
+</body>
+</html>

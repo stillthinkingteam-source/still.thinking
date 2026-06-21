@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Still Thinking — The Content Thinking Audit</title>
+<title>Still Thinking — Content Team Audit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -38,17 +38,17 @@ body{font-family:var(--fb);background:var(--off);color:var(--text);line-height:1
 /* ── HERO — SPLIT ── */
 .hero{
   display:grid;grid-template-columns:1.1fr .9fr;
-  min-height:100vh;padding-top:56px;
+  padding-top:56px;
   border-bottom:1px solid var(--border);
 }
 .hero-l{
-  padding:80px 56px 72px 56px;
-  display:flex;flex-direction:column;justify-content:center;
+  padding:64px 56px 56px 56px;
+  display:flex;flex-direction:column;justify-content:flex-start;
   border-right:1px solid var(--border);
 }
 .hero-r{
   background:var(--ink);
-  padding:72px 48px;
+  padding:56px 48px;
   display:flex;flex-direction:column;justify-content:center;
   position:relative;overflow:hidden;
 }
@@ -99,6 +99,27 @@ h1 .l:nth-child(3){animation-delay:.26s}
 .btn-outline-w{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.2);font-size:10px}
 .btn-outline-w:hover{background:rgba(255,255,255,0.08)}
 
+.btn-textlink{
+  font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;
+  color:var(--warm);text-decoration:none;
+  padding:4px 0;border-bottom:1px solid transparent;
+  transition:color .18s,border-color .18s;
+}
+.btn-textlink:hover{color:var(--ink);border-bottom-color:var(--ink)}
+
+.hero-microcopy{
+  margin-top:18px;display:flex;flex-direction:column;gap:6px;
+  opacity:0;animation:rise .6s .5s forwards;
+}
+.hm-line{
+  font-family:var(--fm);font-size:10px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--red);
+}
+.hm-cred{
+  font-family:var(--fd);font-style:italic;font-size:14.5px;color:var(--muted);
+  line-height:1.5;font-weight:400;
+}
+
 /* Hero right — proof questions */
 .proof-q{
   padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.06);
@@ -134,7 +155,7 @@ h2 em{font-style:italic;color:var(--red)}
 .lead b{color:var(--ink);font-weight:500}
 
 /* ── PROBLEM SECTION — dark ── */
-.problem{background:var(--ink);padding:96px 0}
+.problem{background:var(--ink);padding:80px 0}
 .problem .inner{max-width:1100px;margin:0 auto;padding:0 56px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
 .problem .section-label::after{background:rgba(255,255,255,0.08)}
 .problem .section-label{color:rgba(255,255,255,0.4)}
@@ -146,12 +167,12 @@ h2 em{font-style:italic;color:var(--red)}
 /* Failure cards */
 .failures{display:flex;flex-direction:column;gap:2px}
 .failure{
-  background:rgba(255,255,255,0.04);
-  border-left:3px solid rgba(255,255,255,0.08);
-  padding:20px 22px;
-  transition:border-color .2s;
+  background:rgba(255,255,255,0.05);
+  border-left:3px solid rgba(255,255,255,0.1);
+  padding:24px 26px;
+  transition:border-color .2s, background .2s;
 }
-.failure:hover{border-left-color:var(--red)}
+.failure:hover{border-left-color:var(--red); background:rgba(255,255,255,0.07)}
 .failure-num{
   font-family:var(--fm);font-size:9px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--red);margin-bottom:6px;
@@ -160,7 +181,7 @@ h2 em{font-style:italic;color:var(--red)}
 .failure-desc{font-size:13px;color:rgba(255,255,255,0.38);line-height:1.62;font-weight:300}
 
 /* ── AUDIT SNAPSHOT — light ── */
-.snapshot{padding:96px 0;background:var(--off)}
+.snapshot{padding:80px 0;background:var(--off)}
 .snapshot .inner{max-width:1100px;margin:0 auto;padding:0 56px}
 
 .snapshot-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:48px}
@@ -201,8 +222,26 @@ h2 em{font-style:italic;color:var(--red)}
 .deliver-text{font-size:14px;color:var(--muted);line-height:1.65;font-weight:300}
 .deliver-text b{color:var(--ink);font-weight:500}
 
+/* Built For inline — closes the snapshot section */
+.built-for-inline{
+  grid-column:1 / -1;
+  margin-top:40px;
+  padding-top:32px;
+  border-top:1px solid var(--border);
+}
+.bf-label{
+  font-family:var(--fm);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--red);margin-bottom:14px;font-weight:500;
+}
+.bf-line{
+  font-family:var(--fd);font-size:clamp(19px,2.2vw,26px);font-weight:700;
+  color:var(--ink);line-height:1.32;letter-spacing:-.01em;
+  max-width:760px;margin:0;
+}
+.bf-line em{font-style:italic;color:var(--red);font-weight:700}
+
 /* ── OFFER SECTION — cream ── */
-.offer-sec{background:var(--cream);padding:96px 0;border-top:1px solid var(--border)}
+.offer-sec{background:var(--cream);padding:80px 0;border-top:1px solid var(--border)}
 .offer-sec .inner{max-width:1100px;margin:0 auto;padding:0 56px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
 
 /* The dominant offer card */
@@ -214,9 +253,10 @@ h2 em{font-style:italic;color:var(--red)}
   position:relative;
 }
 .offer-flag{
-  position:absolute;top:0;right:32px;
+  position:absolute;top:-13px;right:28px;
   font-family:var(--fm);font-size:9px;letter-spacing:.16em;text-transform:uppercase;
   padding:7px 14px;background:var(--red);color:#fff;font-weight:500;
+  box-shadow:0 2px 8px rgba(192,0,0,0.25);
 }
 .offer-name{
   font-family:var(--fd);font-size:26px;font-weight:900;color:var(--ink);
@@ -291,7 +331,7 @@ h2 em{font-style:italic;color:var(--red)}
 .founding-text b{color:#fff;font-weight:500}
 
 /* ── FOUNDER SECTION — dark ── */
-.founder{background:var(--ink);padding:96px 0;border-top:4px solid var(--red)}
+.founder{background:var(--ink);padding:80px 0;border-top:4px solid var(--red)}
 .founder .inner{max-width:1100px;margin:0 auto;padding:0 56px;display:grid;grid-template-columns:300px 1fr;gap:72px;align-items:start}
 
 .founder-card{background:rgba(255,255,255,0.04);padding:28px}
@@ -323,7 +363,7 @@ h2 em{font-style:italic;color:var(--red)}
 .cred::before{content:'';width:4px;height:4px;background:var(--red);border-radius:50%;flex-shrink:0;margin-top:6px}
 
 /* ── SOLO/TOOLKIT — light ── */
-.toolkit{padding:96px 0;background:var(--off);border-top:1px solid var(--border)}
+.toolkit{padding:80px 0;background:var(--off);border-top:1px solid var(--border)}
 .toolkit .inner{max-width:1100px;margin:0 auto;padding:0 56px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
 
 .toolkit-card{background:var(--ink);padding:40px;position:relative;overflow:hidden}
@@ -350,7 +390,7 @@ h2 em{font-style:italic;color:var(--red)}
 .tc-note{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.3);margin-top:14px;position:relative}
 
 /* ── FINAL CTA — dark ── */
-.fcta{background:var(--ink);padding:120px 0;text-align:center;position:relative;overflow:hidden}
+.fcta{background:var(--ink);padding:80px 0;text-align:center;position:relative;overflow:hidden}
 .fcta::before{
   content:'THINK';font-family:var(--fd);font-size:240px;font-weight:900;
   color:rgba(255,255,255,0.018);position:absolute;top:50%;left:50%;
@@ -365,6 +405,13 @@ h2 em{font-style:italic;color:var(--red)}
 .fcta-h em{font-style:italic;color:var(--red)}
 .fcta-sub{font-size:15px;color:rgba(255,255,255,0.42);line-height:1.8;font-weight:300;margin-bottom:44px}
 .fcta-btns{display:flex;flex-direction:column;align-items:center;gap:14px}
+.fcta-textlink{
+  font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;
+  color:rgba(255,255,255,0.45);text-decoration:none;
+  padding:4px 0;border-bottom:1px solid transparent;
+  transition:color .18s,border-color .18s;
+}
+.fcta-textlink:hover{color:#fff;border-bottom-color:rgba(255,255,255,0.3)}
 .fcta-meta{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:.08em}
 
 /* ── FOOTER ── */
@@ -383,14 +430,48 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
 
 @media(max-width:960px){
   .hero{grid-template-columns:1fr;min-height:auto}
-  .hero-l{padding:72px 28px 48px;border-right:none;border-bottom:1px solid var(--border)}
-  .hero-r{padding:48px 28px}
+  .hero-l{padding:40px 20px 32px;border-right:none;border-bottom:1px solid var(--border)}
+  .hero-r{padding:32px 20px}
   .hero-r::after{display:none}
-  .problem .inner,.snapshot .inner,.offer-sec .inner,.founder .inner,.toolkit .inner{padding:0 28px;grid-template-columns:1fr}
-  .snapshot-grid{grid-template-columns:1fr}
-  footer{padding:28px 28px;flex-direction:column;align-items:flex-start}
-  .nav{padding:14px 24px}
-  .fcta .inner{padding:0 24px}
+  .problem,.snapshot,.offer-sec,.founder,.toolkit,.fcta{padding:48px 0}
+  .problem .inner,.snapshot .inner,.offer-sec .inner,.founder .inner,.toolkit .inner{padding:0 20px;grid-template-columns:1fr;gap:28px}
+  .problem .inner{gap:8px}
+  .problem .failures{margin-top:4px}
+  .snapshot-grid{grid-template-columns:1fr;gap:28px}
+  footer{padding:24px 20px;flex-direction:column;align-items:flex-start}
+  .nav{padding:14px 18px}
+  .fcta .inner{padding:0 20px}
+  .fcta::before{font-size:120px}
+  h1{line-height:1.02}
+  h2{font-size:clamp(24px,6.6vw,32px)}
+  .research-section{padding:40px 0 !important}
+  .research-section > div{padding:0 20px !important}
+
+  /* Failure cards — use full available width inside dark Problem section */
+  .failure{padding:18px 20px !important; margin:0 !important}
+  .failures{padding:0 !important; margin-top:20px !important}
+
+  /* Audience cards — use full width */
+  .audience-card{padding:22px 20px !important}
+  .audience-grid{padding:0 !important}
+
+  /* Observation form block — full width inside dark */
+  .tally-form{padding:24px 20px !important}
+
+  /* Price table — make it scrollable on mobile so it doesn't squish */
+  .price-table-wrap{overflow-x:auto; -webkit-overflow-scrolling:touch;}
+  .price-table-wrap > div[style*="display:table"]{min-width:380px;}
+  .price-table-tag{font-size:8px !important; padding:5px 10px !important;}
+
+  /* Tighter section padding for sections that had inline 80px */
+  section[style*="padding:80px 0"]{padding:48px 0 !important}
+
+  /* Offer card — reduce inside padding on mobile to give content more width */
+  .offer-card{padding:32px 22px !important}
+  .offer-flag{top:-12px !important; right:16px !important; font-size:8px !important; padding:5px 11px !important}
+
+  /* Built For inline closer — tighter on mobile */
+  .built-for-inline{margin-top:28px !important; padding-top:24px !important}
 }
 </style>
 </head>
@@ -405,18 +486,22 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
 <!-- HERO -->
 <section class="hero">
   <div class="hero-l">
-    <div class="kicker">Content Thinking Audit &nbsp;&middot;&nbsp; Still Thinking</div>
+    <div class="kicker">Content Team Audit &nbsp;&middot;&nbsp; Still Thinking</div>
     <h1>
-      <span class="l">Your team doesn't</span>
-      <span class="l">have a writing</span>
-      <span class="l">problem. It has a <em>thinking</em> problem.</span>
+      <span class="l">Your team isn't</span>
+      <span class="l">writing badly.</span>
+      <span class="l">They've stopped <em>thinking</em></span>
+      <span class="l">before they write.</span>
     </h1>
     <p class="hero-sub">
-      In content teams that lean on AI, thinking drops out first. The drafts read fine and <b>say nothing.</b> Most Heads of Content can feel it without being able to name what's wrong. That's exactly what I do.
+      Still Thinking audits the editorial decisions made before anyone opens a document. <b>Most teams don't have a writing problem.</b> They have a thinking problem that shows up in the writing, and feedback on the writing won't fix it.
     </p>
     <div class="hero-ctas">
-      <a href="#audit" class="btn btn-red">Book the Audit &nbsp;→</a>
-      <a href="#framework" class="btn btn-ghost">Get the free framework</a>
+      <a href="#observation" class="btn btn-red">Get a free read on 3 pieces &nbsp;→</a>
+      <a href="#how" class="btn-textlink">Or see how the full audit works →</a>
+    </div>
+    <div class="hero-microcopy">
+      <span class="hm-line">No pitch. No spam.</span>
     </div>
   </div>
 
@@ -436,6 +521,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
   </div>
 </section>
 
+<!-- TRUST STRIP -->
 <!-- TICKER -->
 <div class="ticker">
   <div class="ttrack">
@@ -482,33 +568,105 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
   </div>
 </section>
 
-<!-- RESEARCH STRIP — between problem and snapshot -->
-<section style="background:var(--cream); padding:72px 0; border-top:1px solid var(--border);">
+<!-- AUDIENCE — who this is for, placed after the problem -->
+<section style="background:var(--off); padding:72px 0; border-top:1px solid var(--border);">
   <div style="max-width:1100px; margin:0 auto; padding:0 56px;">
-    <div class="section-label" style="--red:#C00000;">The research behind the problem</div>
-    <h2 style="margin-bottom:32px;">This is not a hunch.<br>It is <em>documented.</em></h2>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px;">
-      <div style="background:#fff; padding:32px 28px; border-bottom:3px solid transparent; transition:border-color .2s;" onmouseover="this.style.borderBottomColor='#C00000'" onmouseout="this.style.borderBottomColor='transparent'">
-        <div style="font-family:var(--fm); font-size:9px; letter-spacing:.16em; text-transform:uppercase; color:var(--red); margin-bottom:12px;">MIT · 2023</div>
-        <div style="font-family:var(--fd); font-size:48px; font-weight:900; color:var(--ink); line-height:1; margin-bottom:12px;">↓</div>
-        <div style="font-size:14px; color:var(--muted); line-height:1.72; font-weight:300;">People who used AI on writing tasks showed measurably reduced critical thinking when asked to work independently afterward. The shortcut became a dependency.</div>
+    <div class="section-label">Who this is for</div>
+    <h2 style="margin-bottom:14px;">Which of these sounds <em>familiar?</em></h2>
+    <p class="lead" style="margin-bottom:40px; max-width:640px;">The same thinking problem shows up differently depending on where you sit.</p>
+
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="audience-role">If you're a Head of Content</div>
+        <p class="audience-pain">Your team's output went up and the rankings didn't follow. You're giving the same feedback every week and watching it not stick. The feedback isn't wrong. It just isn't naming the right thing.</p>
       </div>
-      <div style="background:#fff; padding:32px 28px; border-bottom:3px solid transparent; transition:border-color .2s;" onmouseover="this.style.borderBottomColor='#C00000'" onmouseout="this.style.borderBottomColor='transparent'">
-        <div style="font-family:var(--fm); font-size:9px; letter-spacing:.16em; text-transform:uppercase; color:var(--red); margin-bottom:12px;">Microsoft &amp; Carnegie Mellon · 2024</div>
-        <div style="font-family:var(--fd); font-size:48px; font-weight:900; color:var(--ink); line-height:1; margin-bottom:12px;">↓</div>
-        <div style="font-size:14px; color:var(--muted); line-height:1.72; font-weight:300;">Higher AI reliance correlated directly with lower analytical effort. Workers outsourced not just production but judgment. Output got faster. Thinking got weaker.</div>
+      <div class="audience-card">
+        <div class="audience-role">If you're a Founder or CMO</div>
+        <p class="audience-pain">Your content used to be a differentiator. Now it reads like everyone else's, and you can feel the brand softening without being able to name where it slipped. The team is producing. The voice is fading.</p>
       </div>
-      <div style="background:#fff; padding:32px 28px; border-bottom:3px solid transparent; transition:border-color .2s;" onmouseover="this.style.borderBottomColor='#C00000'" onmouseout="this.style.borderBottomColor='transparent'">
-        <div style="font-family:var(--fm); font-size:9px; letter-spacing:.16em; text-transform:uppercase; color:var(--red); margin-bottom:12px;">Content Marketing Institute · 2024</div>
-        <div style="font-family:var(--fd); font-size:56px; font-weight:900; color:var(--red); line-height:1; margin-bottom:12px;">72%</div>
-        <div style="font-size:14px; color:var(--muted); line-height:1.72; font-weight:300;">of marketers say content quality has declined since widespread AI adoption. Output went up. Rankings, readership, and reader trust went down.</div>
+      <div class="audience-card">
+        <div class="audience-role">If you run a content-led company</div>
+        <p class="audience-pain">Search performance is dropping. Reader trust is harder to hold. The team can't name why their work isn't landing the way it used to. The content is the product, and the product is getting quieter.</p>
       </div>
-    </div>
-    <div style="margin-top:24px; padding:20px 24px; background:var(--ink); border-left:3px solid var(--red);">
-      <div style="font-size:14px; color:rgba(255,255,255,0.62); line-height:1.72; font-weight:300;">Three independent institutions. Three countries. One conclusion: AI adoption increased output volume. What it did to the quality of thinking inside that output is a different story. The audit names where that thinking broke down in your specific team.</div>
     </div>
   </div>
 </section>
+
+<style>
+.audience-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:2px;}
+.audience-card{background:#fff; padding:30px 26px; border-bottom:3px solid transparent; transition:border-color .2s;}
+.audience-card:hover{border-bottom-color:var(--red);}
+.audience-role{font-family:var(--fm); font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--red); margin-bottom:14px; font-weight:500;}
+.audience-pain{font-size:14px; color:var(--muted); line-height:1.72; font-weight:300; margin:0;}
+@media(max-width:960px){
+  .audience-grid{grid-template-columns:1fr; gap:2px;}
+  .audience-card{padding:22px 20px !important;}
+}
+</style>
+
+<!-- RESEARCH STRIP — fatigue → low thinking → outcomes -->
+<section style="background:var(--cream); padding:72px 0; border-top:1px solid var(--border);" class="research-section">
+  <div style="max-width:1100px; margin:0 auto; padding:0 56px;">
+    <div class="section-label" style="--red:#C00000;">The research behind the problem</div>
+    <h2 style="margin-bottom:14px;">This is not a hunch.<br>It is <em>documented.</em></h2>
+    <p class="lead" style="margin-bottom:32px;">Three years into the AI shift, the pattern is consistent across studies. Teams are fatigued. The thinking is weaker. The outcomes are measurable.</p>
+
+    <div class="research-grid">
+      <div class="research-card">
+        <div class="research-stage">Stage 01 · Team fatigue</div>
+        <div class="research-source">Content Marketing Institute · 2025</div>
+        <div class="research-num">46%</div>
+        <div class="research-text">of marketers are concerned about the quality of generative AI content, and <b>37% report content fatigue across their teams</b>. The volume kept rising. The energy to make it count did not.</div>
+      </div>
+
+      <div class="research-card">
+        <div class="research-stage">Stage 02 · Trust collapse</div>
+        <div class="research-source">Nuremberg Institute · 2025</div>
+        <div class="research-num research-num-arrow">
+          <svg width="44" height="48" viewBox="0 0 44 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="declining">
+            <path d="M22 2 V38" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+            <path d="M8 26 L22 40 L36 26" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="research-text">Simply labeling content as AI-generated makes readers see it as <b>less natural and less useful</b>, lowering brand attitudes and willingness to engage. The audience is already pattern-matching against weak thinking.</div>
+      </div>
+
+      <div class="research-card">
+        <div class="research-stage">Stage 03 · The decline</div>
+        <div class="research-source">CoSchedule · December 2025</div>
+        <div class="research-num">31.4%</div>
+        <div class="research-text">of marketers name <b>organic search and SEO as their biggest performance decline</b> after the AI shift. The work that used to rank is the work that stopped thinking first.</div>
+      </div>
+
+      <div class="research-card">
+        <div class="research-stage">Stage 04 · The outcome</div>
+        <div class="research-source">Forbes · 2025</div>
+        <div class="research-num">15–64%</div>
+        <div class="research-text">AI Overviews are cutting organic traffic by <b>15 to 64 percent depending on industry</b>. Content that competes with AI summarization needs thinking the summary cannot reproduce. Most teams have not built that yet.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px; padding:24px 28px; background:var(--ink); border-left:3px solid var(--red);">
+      <div style="font-size:14.5px; color:rgba(255,255,255,0.72); line-height:1.72; font-weight:300;">Four data points. One arc. Teams got fatigued, audiences stopped trusting, search performance dropped, and traffic followed. The audit names where the thinking broke down in your specific team so you can stop guessing which part of the arc you are in.</div>
+    </div>
+  </div>
+</section>
+
+<style>
+.research-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:2px;}
+.research-card{background:#fff; padding:30px 26px; border-bottom:3px solid transparent; transition:border-color .2s;}
+.research-card:hover{border-bottom-color:#C00000;}
+.research-stage{font-family:var(--fm); font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--red); margin-bottom:8px; font-weight:500;}
+.research-source{font-family:var(--fm); font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--warm); margin-bottom:16px;}
+.research-num{font-family:var(--fd); font-size:48px; font-weight:900; color:var(--ink); line-height:1; margin-bottom:14px; letter-spacing:-.02em;}
+.research-num-arrow{color:var(--red); height:48px; display:flex; align-items:flex-start;}
+.research-text{font-size:13.5px; color:var(--muted); line-height:1.72; font-weight:300;}
+.research-text b{color:var(--ink); font-weight:500;}
+@media(max-width:960px){
+  .research-grid{grid-template-columns:1fr; gap:2px;}
+  .research-section .section-label{padding:0;}
+}
+</style>
 
 <!-- AUDIT SNAPSHOT — light -->
 <section class="snapshot">
@@ -519,7 +677,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
 
     <div class="snapshot-grid">
       <div>
-        <div style="font-family:var(--fm); font-size:9px; letter-spacing:.16em; text-transform:uppercase; color:var(--red); margin-bottom:12px;">Sample audit scores — anonymised. All scores out of 100.</div>
+        <div style="font-family:var(--fm); font-size:9px; letter-spacing:.16em; text-transform:uppercase; color:var(--red); margin-bottom:12px;">Example audit output (anonymised). Scored out of 10.</div>
         <table class="score-table">
           <thead>
             <tr>
@@ -532,27 +690,27 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
           <tbody>
             <tr>
               <td>Angle construction</td>
-              <td><span class="score-num score-low">42</span></td>
-              <td><span class="score-num score-ok">78</span></td>
-              <td><span class="score-num score-mid">61</span></td>
+              <td><span class="score-num score-low">4.2</span></td>
+              <td><span class="score-num score-ok">7.8</span></td>
+              <td><span class="score-num score-mid">6.1</span></td>
             </tr>
             <tr>
               <td>Audience thinking</td>
-              <td><span class="score-num score-low">38</span></td>
-              <td><span class="score-num score-ok">82</span></td>
-              <td><span class="score-num score-low">44</span></td>
+              <td><span class="score-num score-low">3.8</span></td>
+              <td><span class="score-num score-ok">8.2</span></td>
+              <td><span class="score-num score-low">4.4</span></td>
             </tr>
             <tr>
               <td>Evidence usage</td>
-              <td><span class="score-num score-mid">55</span></td>
-              <td><span class="score-num score-ok">74</span></td>
-              <td><span class="score-num score-low">39</span></td>
+              <td><span class="score-num score-mid">5.5</span></td>
+              <td><span class="score-num score-ok">7.4</span></td>
+              <td><span class="score-num score-low">3.9</span></td>
             </tr>
             <tr>
               <td>Originality</td>
-              <td><span class="score-num score-low">31</span></td>
-              <td><span class="score-num score-mid">66</span></td>
-              <td><span class="score-num score-low">28</span></td>
+              <td><span class="score-num score-low">3.1</span></td>
+              <td><span class="score-num score-mid">6.6</span></td>
+              <td><span class="score-num score-low">2.8</span></td>
             </tr>
           </tbody>
         </table>
@@ -596,39 +754,48 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
 <section class="offer-sec" id="audit">
   <div class="inner">
     <div class="offer-card">
-      <div class="offer-flag">3 founding spots</div>
-      <div class="offer-name">Content Thinking Audit</div>
+      <div class="offer-flag">Founding rate</div>
+      <div class="offer-name">Content Team Audit</div>
       <div class="offer-for">For content teams of 6 or more writers</div>
 
       <div class="price-primary">$1,500</div>
       <p class="price-context">For a 6-writer team at the founding rate.</p>
 
-      <div style="width:100%; border-collapse:collapse; margin:16px 0 24px; display:table; font-size:13px;">
-        <div style="display:table; width:100%; border-collapse:collapse;">
-          <div style="display:table-row; background:var(--ink);">
-            <div style="display:table-cell; padding:9px 14px; font-family:var(--fm); font-size:8px; letter-spacing:.14em; text-transform:uppercase; color:#fff; font-weight:500;">Team size</div>
-            <div style="display:table-cell; padding:9px 14px; font-family:var(--fm); font-size:8px; letter-spacing:.14em; text-transform:uppercase; color:#fff; font-weight:500;">Founding rate</div>
-            <div style="display:table-cell; padding:9px 14px; font-family:var(--fm); font-size:8px; letter-spacing:.14em; text-transform:uppercase; color:#fff; font-weight:500;">Standard rate</div>
-          </div>
-          <div style="display:table-row; background:#fff;">
-            <div style="display:table-cell; padding:9px 14px; color:var(--muted); border-bottom:1px solid var(--border);">6 writers</div>
-            <div style="display:table-cell; padding:9px 14px; color:var(--red); font-weight:500; border-bottom:1px solid var(--border);">$1,500</div>
-            <div style="display:table-cell; padding:9px 14px; color:var(--warm); text-decoration:line-through; border-bottom:1px solid var(--border);">$1,800</div>
-          </div>
-          <div style="display:table-row; background:var(--off);">
-            <div style="display:table-cell; padding:9px 14px; color:var(--muted); border-bottom:1px solid var(--border);">8 writers</div>
-            <div style="display:table-cell; padding:9px 14px; color:var(--red); font-weight:500; border-bottom:1px solid var(--border);">$2,000</div>
-            <div style="display:table-cell; padding:9px 14px; color:var(--warm); text-decoration:line-through; border-bottom:1px solid var(--border);">$2,400</div>
-          </div>
-          <div style="display:table-row; background:#fff;">
-            <div style="display:table-cell; padding:9px 14px; color:var(--muted); border-bottom:1px solid var(--border);">10 writers</div>
-            <div style="display:table-cell; padding:9px 14px; color:var(--red); font-weight:500; border-bottom:1px solid var(--border);">$2,500</div>
-            <div style="display:table-cell; padding:9px 14px; color:var(--warm); text-decoration:line-through; border-bottom:1px solid var(--border);">$3,000</div>
-          </div>
-          <div style="display:table-row; background:var(--off);">
-            <div style="display:table-cell; padding:9px 14px; color:var(--muted);">10+ writers</div>
-            <div style="display:table-cell; padding:9px 14px; color:var(--muted);" colspan="2">Let's talk</div>
-          </div>
+      <div class="price-table-wrap" style="margin:20px 0 24px;">
+        <div style="display:flex; justify-content:flex-end; margin-bottom:8px;">
+          <div class="price-table-tag" style="background:var(--red); color:#fff; font-family:var(--fm); font-size:9px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; padding:6px 12px;">First 3 clients: $500 off</div>
+        </div>
+        <div style="width:100%; display:table; font-size:12.5px; border-collapse:collapse;">
+        <div style="display:table-row; background:var(--ink);">
+          <div style="display:table-cell; padding:9px 12px; font-family:var(--fm); font-size:7.5px; letter-spacing:.1em; text-transform:uppercase; color:#fff; font-weight:500;">Team size</div>
+          <div style="display:table-cell; padding:9px 12px; font-family:var(--fm); font-size:7.5px; letter-spacing:.1em; text-transform:uppercase; color:#fff; font-weight:500;">Founding</div>
+          <div style="display:table-cell; padding:9px 12px; font-family:var(--fm); font-size:7.5px; letter-spacing:.1em; text-transform:uppercase; color:#fff; font-weight:500;">Standard</div>
+          <div style="display:table-cell; padding:9px 12px; font-family:var(--fm); font-size:7.5px; letter-spacing:.1em; text-transform:uppercase; color:#fff; font-weight:500;">Turnaround</div>
+        </div>
+        <div style="display:table-row; background:#fff;">
+          <div style="display:table-cell; padding:9px 12px; color:var(--muted); border-bottom:1px solid var(--border);">6 writers</div>
+          <div style="display:table-cell; padding:9px 12px; color:var(--red); font-weight:500; border-bottom:1px solid var(--border);">$1,500</div>
+          <div style="display:table-cell; padding:9px 12px; color:var(--warm); text-decoration:line-through; border-bottom:1px solid var(--border);">$1,800</div>
+          <div style="display:table-cell; padding:9px 12px; color:var(--muted); border-bottom:1px solid var(--border); font-size:11px;">18&ndash;22 days</div>
+        </div>
+        <div style="display:table-row; background:var(--off);">
+          <div style="display:table-cell; padding:9px 12px; color:var(--muted); border-bottom:1px solid var(--border);">8 writers</div>
+          <div style="display:table-cell; padding:9px 12px; color:var(--red); font-weight:500; border-bottom:1px solid var(--border);">$2,000</div>
+          <div style="display:table-cell; padding:9px 12px; color:var(--warm); text-decoration:line-through; border-bottom:1px solid var(--border);">$2,400</div>
+          <div style="display:table-cell; padding:9px 12px; color:var(--muted); border-bottom:1px solid var(--border); font-size:11px;">22&ndash;28 days</div>
+        </div>
+        <div style="display:table-row; background:#fff;">
+          <div style="display:table-cell; padding:9px 12px; color:var(--muted); border-bottom:1px solid var(--border);">10 writers</div>
+          <div style="display:table-cell; padding:9px 12px; color:var(--red); font-weight:500; border-bottom:1px solid var(--border);">$2,500</div>
+          <div style="display:table-cell; padding:9px 12px; color:var(--warm); text-decoration:line-through; border-bottom:1px solid var(--border);">$3,000</div>
+          <div style="display:table-cell; padding:9px 12px; color:var(--muted); border-bottom:1px solid var(--border); font-size:11px;">28&ndash;35 days</div>
+        </div>
+        <div style="display:table-row; background:var(--off);">
+          <div style="display:table-cell; padding:9px 12px; color:var(--muted);">10+ writers</div>
+          <div style="display:table-cell; padding:9px 12px; color:var(--ink); font-weight:500;">Custom</div>
+          <div style="display:table-cell; padding:9px 12px; color:var(--muted);">Custom</div>
+          <div style="display:table-cell; padding:9px 12px; color:var(--muted); font-size:11px;">Custom</div>
+        </div>
         </div>
       </div>
 
@@ -642,16 +809,18 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
       </ul>
 
       <div class="offer-meta">
-        <span><b>Turnaround:</b> 4&ndash;6 days</span>
+        <span><b>Business days</b> from receiving your pieces</span>
         <span><b>Payment:</b> Wise or Payoneer</span>
       </div>
 
-      <div style="margin-top:24px;">
-        <a href="https://www.linkedin.com/in/farwa-shah-803246144/" target="_blank" class="btn btn-red" style="display:inline-flex; width:100%; justify-content:center;">Book the audit &nbsp;→</a>
+      <div style="margin-top:24px; display:flex; flex-direction:column; gap:10px; align-items:center;">
+        <a href="#observation" class="btn btn-red" style="display:inline-flex; width:100%; justify-content:center;">Book the audit &nbsp;→</a>
+        <a href="mailto:stillthinking.team@gmail.com" class="btn-textlink">Or ask a question first →</a>
+        <div style="font-family:var(--fm); font-size:9.5px; letter-spacing:.1em; color:var(--warm); margin-top:4px; line-height:1.5;">No pitch. No spam.</div>
       </div>
     </div>
 
-    <div>
+    <div id="how">
       <div class="how-label">How it works</div>
       <div class="steps">
         <div class="step"><div class="step-n">01</div><div class="step-c"><b>You send the pieces</b><span>Three recent pieces per writer, plus your brief or style guide if you have one. Nothing else needed to start.</span></div></div>
@@ -662,12 +831,11 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
 
       <div style="background:var(--red); padding:24px 26px; margin-top:28px; position:relative; overflow:hidden;">
         <div style="position:absolute; right:-16px; top:-16px; width:80px; height:80px; background:rgba(255,255,255,0.06); border-radius:50%;"></div>
-        <div style="font-family:var(--fm); font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,0.65); margin-bottom:10px;">Founding client offer</div>
-        <div style="font-family:var(--fd); font-size:22px; font-weight:900; color:#fff; margin-bottom:8px; line-height:1.1;">Save up to $500 on your audit.</div>
-        <div style="font-size:13.5px; color:rgba(255,255,255,0.78); line-height:1.72; font-weight:300; margin-bottom:16px;">The first three clients pay the founding rate. In return: one case study and one short recorded testimonial, collected 30 days after delivery. After the third client, the rate returns to standard pricing.</div>
+        <div style="font-family:var(--fm); font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,0.65); margin-bottom:10px;">The founding rate is a trade</div>
+        <div style="font-family:var(--fd); font-size:22px; font-weight:900; color:#fff; margin-bottom:8px; line-height:1.15;">The first three clients save $500 on the audit.</div>
+        <div style="font-size:13.5px; color:rgba(255,255,255,0.78); line-height:1.72; font-weight:300; margin-bottom:16px;">In exchange for a case study and a short recorded testimonial after thirty days. After the third founding client, the rate holds at standard.</div>
         <div style="display:flex; gap:20px; flex-wrap:wrap;">
-          <div style="font-family:var(--fm); font-size:10px; letter-spacing:.1em; color:rgba(255,255,255,0.88);"><span style="color:rgba(255,255,255,0.5);">Spots taken</span>&nbsp; 1 of 3</div>
-          <div style="font-family:var(--fm); font-size:10px; letter-spacing:.1em; color:rgba(255,255,255,0.88);"><span style="color:rgba(255,255,255,0.5);">Remaining</span>&nbsp; 2 founding spots</div>
+          <div style="font-family:var(--fm); font-size:10px; letter-spacing:.1em; color:rgba(255,255,255,0.88);">A small number of founding engagements remain.</div>
         </div>
       </div>
     </div>
@@ -679,10 +847,10 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
   <div class="inner">
     <div>
       <div class="founder-card">
-        <div class="founder-init">FS</div>
+        <img src="farwa-portrait.jpg" alt="Farwa Shah" class="founder-photo">
         <div class="founder-name">Farwa Shah</div>
         <div class="founder-role">
-          Content Manager &nbsp;·&nbsp; Still Thinking<br>
+          Content Manager &nbsp;·&nbsp; Editorial Leadership<br>
           stillthinking.team@gmail.com
         </div>
       </div>
@@ -690,19 +858,57 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
 
     <div>
       <div class="founder-tag">Built by a practitioner. Not a consultant.</div>
-      <div class="founder-hl">I built this audit because I needed it and nothing else existed.</div>
+      <div class="founder-hl">I built the rubric because vague feedback wasn't fixing the work.</div>
       <div class="founder-body">
-        <p>I have been reviewing content professionally for six years. For most of that time I was looking at the <b>writing</b> and missing the actual problem, which was happening before anyone opened a document.</p>
-        <p>When I started tracking thinking failures specifically, not prose quality, not SEO compliance, not tone, the patterns became visible almost immediately. The same four failures repeating across otherwise talented writers on otherwise well-briefed topics.</p>
-        <p>I built the rubric to make those failures nameable. Named failures get fixed. Vague feedback about "needing more depth" or "stronger angles" does not.</p>
-        <p>This is the system I use on my own team. It is the one I run on yours.</p>
+        <p>Most editorial feedback fails the same way. <i>Make it sharper. Add more depth. This feels generic.</i> The writer nods, can't act on it, and submits the same shape of piece next week. Nothing changes because nothing got named.</p>
+        <p>I built this audit on a real 9-writer team because I needed it. Not a framework I invented to sell. The actual review system I run every week. The taxonomy came from the patterns I kept seeing. The rubric came from the conversations that weren't working. The fixes came from what actually moved the work.</p>
+        <p>I've spent eight years leading content functions across B2B SaaS, automotive, GovTech, healthcare, blockchain, and digital transformation. For audiences in North America, Europe, and the MENA region. Including government modernization programs in the UAE and Saudi Arabia. The thinking failures don't care what industry you're in. They repeat everywhere.</p>
+        <p>This is the system I use on my own team. It is the system I will run on yours.</p>
       </div>
       <div class="creds">
-        <div class="cred">Six years reviewing content across B2B SaaS, automotive, and digital media verticals</div>
-        <div class="cred">Content Manager leading a 9-writer team, filling the editor role with no dedicated editorial layer beneath</div>
-        <div class="cred">Built the internal training program that became Still Thinking after seeing the same thinking failures repeat across writers at every level</div>
-        <div class="cred">Founder of Still Thinking, a content thinking audit and training service for teams that want better work, not just more of it</div>
+        <div class="cred">Content Manager leading a 9-writer editorial team</div>
+        <div class="cred">8+ years across six industries, three continents</div>
+        <div class="cred">Trusted by clients across North America, Europe, and MENA, including GCC government transformation programs</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.founder-photo{
+  width:100%; aspect-ratio:1/1; object-fit:cover; display:block;
+  margin-bottom:20px; background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.06);
+}
+.founder-card{padding:0; background:transparent;}
+.founder-card .founder-name{padding:0 4px;}
+.founder-card .founder-role{padding:0 4px;}
+</style>
+
+<!-- FREE OBSERVATION — hero CTA destination — Tally embed goes here when ready -->
+<section style="background:var(--ink); padding:80px 0; border-top:1px solid var(--border);" id="observation">
+  <div style="max-width:760px; margin:0 auto; padding:0 56px;">
+    <div style="font-family:var(--fm); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--red); margin-bottom:18px; font-weight:500;">
+      A free read on three pieces
+    </div>
+    <h2 style="font-family:var(--fd); font-size:clamp(28px,3.8vw,42px); font-weight:900; color:#fff; line-height:1.1; letter-spacing:-.022em; margin-bottom:18px;">
+      Send three pieces.<br>I'll send back <em style="font-style:italic; color:var(--red);">one specific note.</em>
+    </h2>
+    <p style="font-size:15px; color:rgba(255,255,255,0.7); line-height:1.78; font-weight:300; margin-bottom:36px; max-width:580px;">
+      No pitch, no sales sequence. I read your three pieces against the rubric and send back one specific, named thinking failure I'd fix first, written so a writer can act on it. If the full audit fits, you'll know. If it doesn't, you still have something useful.
+    </p>
+
+    <!-- TALLY FORM EMBED PLACEHOLDER -->
+    <!--
+      REPLACE THIS BLOCK with your Tally embed script when ready.
+      Tally provides an iframe or script tag, paste it inside the .tally-form container below.
+      Suggested form fields: Name, Work email, Role, Team size, Link or paragraph to a recent piece.
+    -->
+    <div class="tally-form" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); padding:28px 26px; border-radius:2px;">
+      <div style="font-family:var(--fm); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--red); margin-bottom:12px;">Form opens here</div>
+      <p style="font-size:14px; color:rgba(255,255,255,0.78); line-height:1.7; font-weight:300; margin-bottom:18px;">In the meantime, the fastest way to start is to email me directly. Tell me your team size and paste a link to one recent piece.</p>
+      <a href="mailto:stillthinking.team@gmail.com?subject=Free read on 3 pieces" class="btn btn-red" style="padding:14px 28px;">Email the pieces &nbsp;→</a>
+      <div style="font-family:var(--fm); font-size:9.5px; letter-spacing:.1em; color:rgba(255,255,255,0.5); margin-top:18px; line-height:1.6;">Replies within 24 hrs. No pitch. No spam.</div>
     </div>
   </div>
 </section>
@@ -733,12 +939,13 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
 <!-- FINAL CTA — dark -->
 <section class="fcta">
   <div class="inner">
-    <div class="fcta-eye">Still Thinking &nbsp;&middot;&nbsp; Content Thinking Audit</div>
-    <h2 class="fcta-h">Start with one<br><em>conversation.</em></h2>
-    <p class="fcta-sub">Tell me how big your team is and send a few recent pieces. I will give you one specific observation for free, then tell you whether the audit fits. One message is enough.</p>
+    <div class="fcta-eye">Still Thinking &nbsp;&middot;&nbsp; Content Team Audit</div>
+    <h2 class="fcta-h">Ready <em>when you are.</em></h2>
+    <p class="fcta-sub">The audit is a real diagnostic on real work. The free read is the way in. You can take either route, or read the working document first and decide later. No path is wrong.</p>
     <div class="fcta-btns">
-      <a href="https://www.linkedin.com/in/farwa-shah-803246144/" target="_blank" class="btn btn-red" style="padding:16px 40px; font-size:11px;">Message me on LinkedIn &nbsp;→</a>
-      <div class="fcta-meta">Founding rate &nbsp;&middot;&nbsp; 2 spots remaining &nbsp;&middot;&nbsp; Replies within 24 hours</div>
+      <a href="#observation" class="btn btn-red" style="padding:16px 40px; font-size:11px;">Send three pieces &nbsp;→</a>
+      <a href="mailto:stillthinking.team@gmail.com" class="fcta-textlink">Or email me directly →</a>
+      <div class="fcta-meta">No pitch. No spam. &nbsp;&middot;&nbsp; Replies within 24 hrs.</div>
     </div>
   </div>
 </section>
@@ -749,12 +956,12 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,0.06);padding
     <div class="foot-name">Still Thinking</div>
     <div class="foot-meta">
       Farwa Shah &nbsp;&middot;&nbsp; Content Manager<br>
-      Built for content teams that want better work, not just more of it.
+      Built for content teams ready to think before they write.
     </div>
   </div>
   <div class="foot-right">
     <a href="https://www.linkedin.com/in/farwa-shah-803246144/" target="_blank" class="foot-link">LinkedIn</a>
-    <a href="#framework" class="foot-link">Free Framework</a>
+    <a href="mailto:stillthinking.team@gmail.com" class="foot-link">Email</a>
   </div>
 </footer>
 

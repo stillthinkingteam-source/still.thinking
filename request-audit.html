@@ -148,6 +148,9 @@ body{
   background:var(--red);color:#fff;border-color:var(--red);
 }
 .pill-label:hover{border-color:var(--ink)}
+@media(max-width:640px){
+  .pill-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+}
 
 /* Multi-select check cards */
 .check-cards{display:flex;flex-direction:column;gap:8px;position:relative}
@@ -201,6 +204,17 @@ body{
 }
 .error-note.show{display:block;animation:rise .3s ease forwards}
 
+.req{color:var(--red);margin-left:3px;font-style:normal}
+
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-6px)}
+  40%{transform:translateX(6px)}
+  60%{transform:translateX(-4px)}
+  80%{transform:translateX(4px)}
+}
+.shake{animation:shake .35s ease forwards}
+
 /* ── SUCCESS BLOCK ── */
 .success{display:none;text-align:center;padding:48px 24px 80px}
 .success.active{display:block}
@@ -212,12 +226,13 @@ body{
 .success-icon svg{width:72px;height:72px}
 .success-icon .ring{
   fill:none;stroke:var(--red);stroke-width:1.5;
-  stroke-dasharray:188;stroke-dashoffset:188;
+  stroke-dasharray:189;stroke-dashoffset:189;
+  transform-origin:center;transform:rotate(-90deg);
   animation:circle-draw .65s .15s cubic-bezier(.65,0,.35,1) forwards;
 }
 .success-icon .tick{
   fill:none;stroke:var(--red);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;
-  stroke-dasharray:34;stroke-dashoffset:34;
+  stroke-dasharray:40;stroke-dashoffset:40;
   animation:check-draw .4s .75s cubic-bezier(.65,0,.35,1) forwards;
 }
 @keyframes circle-draw{to{stroke-dashoffset:0}}
@@ -257,7 +272,7 @@ body{
 }
 
 .success-close{
-  max-width:520px;margin:36px auto 0;
+  max-width:520px;margin:20px auto 0;
   font-family:var(--fd);font-size:15px;font-style:italic;
   color:var(--muted);text-align:center;line-height:1.6;
   opacity:0;animation:rise .5s 2.0s forwards;
@@ -309,8 +324,9 @@ footer a:hover{color:var(--ink)}
   .actions .btn-ghost{order:2;text-align:center;padding:10px 0}
   .submit-meta{text-align:center;margin-top:8px}
   .success{padding:32px 16px 60px}
-  footer{flex-direction:column;text-align:center;padding:24px 20px}
-  footer a{margin:0 10px}
+  footer{flex-direction:column;text-align:center;padding:24px 20px;gap:16px}
+  footer div:last-child{display:flex;flex-direction:column;gap:10px}
+  footer a{margin:0}
 }
 </style>
 </head>
@@ -326,7 +342,7 @@ footer a:hover{color:var(--ink)}
 <section class="hero">
   <div class="hero-kicker">Content Team Audit · Begin</div>
   <h1>Begin your content <em>audit.</em></h1>
-  <p class="hero-sub">Every content bottleneck has a root cause. Answer six questions about your team, and I'll identify where I'd begin.<br><br><b>Six questions. About 2 minutes. You'll hear back within 24 hours.</b></p>
+  <p class="hero-sub">Every content bottleneck has a root cause. Answer six questions about your team, and I'll identify where I'd begin. <b>You'll hear back within 24 hours.</b></p>
 </section>
 
 <!-- FORM -->
@@ -336,7 +352,7 @@ footer a:hover{color:var(--ink)}
     <div class="progress-label" id="progressLabel">Step 1 of 3 &nbsp;·&nbsp; About You</div>
   </div>
 
-  <form id="auditForm" action="REPLACE_WITH_FORMSPREE_ENDPOINT" method="POST">
+  <form id="auditForm" action="https://formspree.io/f/mgojnnkp" method="POST">
 
     <!-- STEP 1 -->
     <div class="step active" data-step="1">
@@ -344,17 +360,17 @@ footer a:hover{color:var(--ink)}
       <p class="step-teach">These details help me understand your team before reviewing your responses.</p>
 
       <div class="field">
-        <label class="field-label" for="name">Your name</label>
+        <label class="field-label" for="name">Your name<em class="req">*</em></label>
         <input class="field-input" type="text" id="name" name="name" placeholder="Jane Smith" required>
       </div>
 
       <div class="field">
-        <label class="field-label" for="email">Work email</label>
+        <label class="field-label" for="email">Work email<em class="req">*</em></label>
         <input class="field-input" type="email" id="email" name="email" placeholder="jane@company.com" required>
       </div>
 
       <div class="field">
-        <span class="field-label">Your role</span>
+        <span class="field-label">Your role<em class="req">*</em></span>
         <div class="card-options" data-radio-group>
           <input type="radio" name="role" id="role-1" value="Head of Content / Editorial Lead" required>
           <label class="card-label" for="role-1">Head of Content / Editorial Lead</label>
@@ -380,12 +396,12 @@ footer a:hover{color:var(--ink)}
       <p class="step-teach">Teams above six writers usually develop recurring thinking patterns. Smaller teams hide their patterns better, but the patterns are still there.</p>
 
       <div class="field">
-        <label class="field-label" for="company">Company</label>
+        <label class="field-label" for="company">Company<em class="req">*</em></label>
         <input class="field-input" type="text" id="company" name="company" placeholder="Acme Inc." required>
       </div>
 
       <div class="field">
-        <span class="field-label">Number of writers</span>
+        <span class="field-label">Number of writers<em class="req">*</em></span>
         <div class="pill-options" data-radio-group>
           <input type="radio" name="team_size" id="size-1" value="1–3" required>
           <label class="pill-label" for="size-1">1–3</label>
@@ -400,7 +416,7 @@ footer a:hover{color:var(--ink)}
       </div>
 
       <div class="field">
-        <span class="field-label">Are they</span>
+        <span class="field-label">Are they<em class="req">*</em></span>
         <div class="pill-options" data-radio-group>
           <input type="radio" name="team_type" id="type-1" value="In-house" required>
           <label class="pill-label" for="type-1">In-house</label>
@@ -424,7 +440,7 @@ footer a:hover{color:var(--ink)}
       <p class="step-teach">The honest answer here shapes the diagnosis.</p>
 
       <div class="field">
-        <span class="field-label">What's happening right now? &nbsp;<span style="color:var(--warm);text-transform:none;letter-spacing:0;font-family:var(--fb);font-size:11px;font-style:italic;">(Select all that apply)</span></span>
+        <span class="field-label">What's happening right now?<em class="req">*</em> &nbsp;<span style="color:var(--warm);text-transform:none;letter-spacing:0;font-family:var(--fb);font-size:11px;font-style:italic;">(Select all that apply)</span></span>
         <div class="check-cards" data-check-group>
           <input type="checkbox" name="situations" id="sit-1" value="Writers struggle to find strong angles">
           <label class="check-label" for="sit-1">Writers struggle to find strong angles</label>
@@ -481,10 +497,10 @@ footer a:hover{color:var(--ink)}
       </div>
     </div>
 
-    <p class="success-close">You can also find me on <a href="https://www.linkedin.com/in/farwa-shah-803246144/" target="_blank" rel="noopener">LinkedIn</a>.</p>
+    <p class="success-close">While you wait, you can find me on <a href="https://www.linkedin.com/in/farwa-shah-803246144/" target="_blank" rel="noopener">LinkedIn</a>.</p>
 
     <div class="success-foot">
-      <a href="/">← Back to stillthinking.co</a>
+      <a href="https://stillthinking.co">← Back to stillthinking.co</a>
     </div>
   </div>
 </section>
@@ -575,7 +591,16 @@ function validateStep(n) {
 }
 
 function nextStep(n) {
-  if (!validateStep(n)) return;
+  if (!validateStep(n)) {
+    const btn = document.querySelector(`[data-step="${n}"] .btn-red`);
+    if (btn) {
+      btn.classList.remove('shake');
+      void btn.offsetWidth;
+      btn.classList.add('shake');
+      btn.addEventListener('animationend', () => btn.classList.remove('shake'), {once:true});
+    }
+    return;
+  }
   showStep(n + 1);
 }
 
